@@ -5,7 +5,7 @@ from sksparse.cholmod import cholesky_AAt
 import open3d as o3d
 import copy
 
-def cholskeySolve(M, b):
+def choleskySolve(M, b):
 
     factor = cholesky_AAt(M.T)
     return factor(M.T.dot(b)).toarray()
@@ -146,7 +146,7 @@ def nonrigidIcp(sourcemesh,targetmesh):
             
             B[4 * n_source_edges: (4 * n_source_edges +n_source_verts), :] = U
             
-            X = cholskeySolve(A, B)
+            X = choleskySolve(A, B)
         
             
     vertsTransformed = D*X;
